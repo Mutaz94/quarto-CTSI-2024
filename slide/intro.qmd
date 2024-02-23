@@ -1,0 +1,76 @@
+---
+title: A Breif Introduction to Quarto 
+cap-location: margin
+slide-level: 0 
+center: true 
+format: 
+    revealjs:
+        menu: false
+        standalone: true
+        crossref: 
+            fig-prefix: ""
+        theme: stylesheet.scss
+        footer: "Quarto Workshop 2024 - CTSI"
+---
+
+---
+
+## {background-color="black" background-image="img/hello-blank.png" background-size="100px"}
+
+---
+
+
+```{r}
+#| echo: false 
+#| label: fig-hello 
+#| fig-width: 3
+#| fig-height: 2
+#| fig-cap: ""
+knitr::include_graphics("img/hello-blank.png",)
+
+```
+
+
+---
+
+
+# Literate programming 
+
+<div>
+"Literate programming is a methodology that combines a programming language with a documentation language, thereby making programs more robust, more portable, more easily maintained, and arguably more fun to write than programs that are written only in a high-level language." _Donald Knuth_
+</div> 
+
+TODO:
+
+- Add image 
+- Add References 
+
+---
+
+# Literate programming was and being used beyond program documentation
+
+< Real World Application > 
+
+---
+
+# Even More ... 
+
+---
+
+# Hello Quarto
+
+
+--- 
+
+# Real world applications
+
+--- 
+
+# Quarto Anatomy 
+
+--- 
+
+# Quarto is NOT another version Rmarkdown 
+
+---
+
