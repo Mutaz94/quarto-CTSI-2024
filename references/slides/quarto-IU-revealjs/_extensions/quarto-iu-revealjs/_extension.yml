@@ -1,0 +1,10 @@
+title: Quarto-IU-revealjs
+author: First Last
+version: 1.0.0
+quarto-required: ">=1.5.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [dark, custom.scss]
+      logo: logo.svg
+
