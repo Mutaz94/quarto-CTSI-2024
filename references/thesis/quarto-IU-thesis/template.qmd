@@ -1,8 +1,8 @@
 ---
-title: Untitled
+title: My Awesome Thesis Title 
 format:
   quarto-IU-thesis-pdf: default
-author: First Last
+author: Student A 
 date: last-modified
 ---
 

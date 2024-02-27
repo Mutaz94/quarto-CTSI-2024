@@ -6,5 +6,6 @@ contributes:
   formats:
     pdf:
       toc: true
+      documentclass: scrreprt 
       include-in-header: header.tex
 
