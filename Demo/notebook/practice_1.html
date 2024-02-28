@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="“CTSI” “IU”">
-
-<title>Lab Notebook Theoph Model Development</title>
+<meta name="author" content="CTSI">
+<meta name="dcterms.date" content="2024-02-28">
+<title>Lab Notebook for Theoph Model Development</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,8 +19,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="practice_1_files/libs/clipboard/clipboard.min.js"></script>
 <script src="practice_1_files/libs/quarto-html/quarto.js"></script>
@@ -34,29 +65,31 @@ ul.task-list li input[type="checkbox"] {
 <script src="practice_1_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="practice_1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="practice_1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-
-
 </head>
-
 <body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+  <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-background" id="toc-sec-background" class="nav-link active" data-scroll-target="#sec-background"><span class="header-section-number">1</span> Background</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2</span> Methods</a></li>
-  <li><a href="#data-viz" id="toc-data-viz" class="nav-link" data-scroll-target="#data-viz"><span class="header-section-number">3</span> Data Viz</a></li>
+<li>
+<a href="#notebook-1" id="toc-notebook-1" class="nav-link active" data-scroll-target="#notebook-1"><span class="header-section-number">1</span> Notebook 1</a>
+  <ul class="collapse">
+<li><a href="#sec-intro" id="toc-sec-intro" class="nav-link" data-scroll-target="#sec-intro"><span class="header-section-number">1.1</span> Background</a></li>
+  <li>
+<a href="#sec-methods" id="toc-sec-methods" class="nav-link" data-scroll-target="#sec-methods"><span class="header-section-number">1.2</span> Methods</a>
+  <ul class="collapse">
+<li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">1.2.1</span> Data</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">1.3</span> Results</a></li>
+  </ul>
+</li>
+  </ul></nav>
 </div>
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Lab Notebook Theoph Model Development</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Lab Notebook for Theoph Model Development</h1>
 </div>
 
 
@@ -66,34 +99,631 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p> </p>
+             <p>CTSI </p>
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 28, 2024</p>
+    </div>
+  </div>
   
     
   </div>
   
 
-</header>
+</header><section id="notebook-1" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Notebook 1</h1>
+<section id="sec-intro" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="sec-intro">
+<span class="header-section-number">1.1</span> Background</h2>
+<p><strong>Theophylline</strong> is a medication used to treat asthma and chronic obstructive pulmonary disease as a second-line drug. It is a <u>bronchodilator.</u> This activity reviews the indications, action, and contraindications for theophylline as a potential agent in treating asthma and chronic obstructive pulmonary disease. This activity will highlight the mechanism of action, adverse event profile, pharmacokinetics, and drug interactions pertinent for members of the interprofessional team in the treatment of patients with asthma and chronic obstructive pulmonary disease (<a href="https://www.ncbi.nlm.nih.gov/books/NBK519024/">Link</a>). The chemical structure of Theoph is show below <a href="#fig-struc">Figure&nbsp;1</a>.</p>
+<div id="fig-struc" class="quarto-figure quarto-figure-center anchored" style="text-align: center">
+<figure class="figure"><p><img src="images/theoph_structures.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Chemical Structure</figcaption></figure>
+</div>
+</section><section id="sec-methods" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="sec-methods">
+<span class="header-section-number">1.2</span> Methods</h2>
+<section id="data" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="data">
+<span class="header-section-number">1.2.1</span> Data</h3>
+<div class="cell">
+<details><summary>Click here for full code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#install.packages("ggplot2")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-PK-profile</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Theoph PK Profiles"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-subcap:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| - "PK Profile colored by Subject ID"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| - "Individual PK profiles"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| layout-ncol: 2</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>dataset<span class="ot">&lt;-</span>Theoph</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>full<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>dataset, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>conc, <span class="at">group=</span>Subject))<span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(Subject)),<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(Subject)))<span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Time (hrs)"</span>, <span class="at">y=</span><span class="st">"Theoph Concentration (mg/mL)"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>full</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>idv<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>dataset, <span class="fu">aes</span>(<span class="at">x=</span>Time, <span class="at">y=</span>conc, <span class="at">group=</span>Subject))<span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(Subject)),<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(Subject)))<span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">"none"</span>)<span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Time (hrs)"</span>, <span class="at">y=</span><span class="st">"Theoph Concentration (mg/mL)"</span>)<span class="sc">+</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Subject)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>idv</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-PK-profile" class="cell quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-PK-profile-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="practice_1_files/figure-html/fig-PK-profile-1.png" class="img-fluid figure-img" data-ref-parent="fig-PK-profile" width="672"></p>
+<figcaption class="figure-caption">(a) PK Profile colored by Subject ID</figcaption></figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-PK-profile-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="practice_1_files/figure-html/fig-PK-profile-2.png" class="img-fluid figure-img" data-ref-parent="fig-PK-profile" width="672"></p>
+<figcaption class="figure-caption">(b) Individual PK profiles</figcaption></figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Theoph PK Profiles</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p><a href="#fig-PK-profile">Figure&nbsp;2</a></p>
+<p><a href="#fig-PK-profile-1">Figure&nbsp;2 (a)</a> and <a href="#fig-PK-profile-2">Figure&nbsp;2 (b)</a></p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dataset</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">Time</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Time</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>N<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>            Mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">conc</span><span class="op">)</span>,</span>
+<span>            Median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">conc</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-pk-sum" class="anchored">
 
-<p>docx # Lab Notebook Part 1</p>
-<p>Start Date: 02/28/2024</p>
-<p>End Date: —-</p>
-<section id="sec-background" class="level2" style="color:green" data-number="1">
-<h2 style="color:green" data-number="1" class="anchored" data-anchor-id="sec-background"><span class="header-section-number">1</span> Background</h2>
-</section>
-<section id="methods" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="methods"><span class="header-section-number">2</span> Methods</h2>
-<p>As discussed in the <a href="#sec-background">Section&nbsp;1</a> Theoph is an important medication.</p>
-</section>
-<section id="data-viz" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="data-viz"><span class="header-section-number">3</span> Data Viz</h2>
-</section>
+<div id="snqsbfzboe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#snqsbfzboe table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-</main>
-<!-- /main column -->
-<script id="quarto-html-after-body" type="application/javascript">
+#snqsbfzboe thead, #snqsbfzboe tbody, #snqsbfzboe tfoot, #snqsbfzboe tr, #snqsbfzboe td, #snqsbfzboe th {
+  border-style: none;
+}
+
+#snqsbfzboe p {
+  margin: 0;
+  padding: 0;
+}
+
+#snqsbfzboe .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#snqsbfzboe .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#snqsbfzboe .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#snqsbfzboe .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#snqsbfzboe .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#snqsbfzboe .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#snqsbfzboe .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#snqsbfzboe .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#snqsbfzboe .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#snqsbfzboe .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#snqsbfzboe .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#snqsbfzboe .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#snqsbfzboe .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#snqsbfzboe .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#snqsbfzboe .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snqsbfzboe .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#snqsbfzboe .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#snqsbfzboe .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#snqsbfzboe .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snqsbfzboe .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#snqsbfzboe .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snqsbfzboe .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#snqsbfzboe .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snqsbfzboe .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#snqsbfzboe .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snqsbfzboe .gt_left {
+  text-align: left;
+}
+
+#snqsbfzboe .gt_center {
+  text-align: center;
+}
+
+#snqsbfzboe .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#snqsbfzboe .gt_font_normal {
+  font-weight: normal;
+}
+
+#snqsbfzboe .gt_font_bold {
+  font-weight: bold;
+}
+
+#snqsbfzboe .gt_font_italic {
+  font-style: italic;
+}
+
+#snqsbfzboe .gt_super {
+  font-size: 65%;
+}
+
+#snqsbfzboe .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#snqsbfzboe .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#snqsbfzboe .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#snqsbfzboe .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#snqsbfzboe .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#snqsbfzboe .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#snqsbfzboe .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<caption>Table&nbsp;1:  <p>Summary of Theoph Concentrations</p> </caption>
+  <thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Time">Time</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="N">N</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mean">Mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Median">Median</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="Time" class="gt_row gt_right">0</td>
+<td headers="N" class="gt_row gt_right">27</td>
+<td headers="Mean" class="gt_row gt_right">1.818889</td>
+<td headers="Median" class="gt_row gt_right">1.250</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">1</td>
+<td headers="N" class="gt_row gt_right">21</td>
+<td headers="Mean" class="gt_row gt_right">7.006667</td>
+<td headers="Median" class="gt_row gt_right">7.140</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">2</td>
+<td headers="N" class="gt_row gt_right">12</td>
+<td headers="Mean" class="gt_row gt_right">7.887500</td>
+<td headers="Median" class="gt_row gt_right">7.815</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">3</td>
+<td headers="N" class="gt_row gt_right">1</td>
+<td headers="Mean" class="gt_row gt_right">7.090000</td>
+<td headers="Median" class="gt_row gt_right">7.090</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">4</td>
+<td headers="N" class="gt_row gt_right">11</td>
+<td headers="Mean" class="gt_row gt_right">7.529091</td>
+<td headers="Median" class="gt_row gt_right">7.500</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">5</td>
+<td headers="N" class="gt_row gt_right">12</td>
+<td headers="Mean" class="gt_row gt_right">6.766667</td>
+<td headers="Median" class="gt_row gt_right">6.430</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">7</td>
+<td headers="N" class="gt_row gt_right">12</td>
+<td headers="Mean" class="gt_row gt_right">5.695000</td>
+<td headers="Median" class="gt_row gt_right">5.350</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">9</td>
+<td headers="N" class="gt_row gt_right">12</td>
+<td headers="Mean" class="gt_row gt_right">5.080833</td>
+<td headers="Median" class="gt_row gt_right">4.735</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">12</td>
+<td headers="N" class="gt_row gt_right">12</td>
+<td headers="Mean" class="gt_row gt_right">3.885000</td>
+<td headers="Median" class="gt_row gt_right">3.615</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">24</td>
+<td headers="N" class="gt_row gt_right">11</td>
+<td headers="Mean" class="gt_row gt_right">1.426364</td>
+<td headers="Median" class="gt_row gt_right">1.150</td>
+</tr>
+<tr>
+<td headers="Time" class="gt_row gt_right">25</td>
+<td headers="N" class="gt_row gt_right">1</td>
+<td headers="Mean" class="gt_row gt_right">1.150000</td>
+<td headers="Median" class="gt_row gt_right">1.150</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#tbl-pk-sum">Table&nbsp;1</a></p>
+</section></section><section id="results" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="results">
+<span class="header-section-number">1.3</span> Results</h2>
+<p>As discussed in <a href="#sec-intro">Section&nbsp;1.1</a></p>
+</section></section></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

@@ -1,24 +1,99 @@
 ---
-title: "Lab Notebook Theoph Model Development"
-author: |
-        "CTSI"
-        "IU"
-format: html
-editor: visual
+title: "Lab Notebook for Theoph Model Development"
+author: "CTSI"
+date: today
 table-of-contents: true
 number-sections: true
+code-link: true
+lot: true
+lof: true
+execute: 
+  warning: false
+  error: false
+format: html
+editor: visual
 ---
 
-docx \# Lab Notebook Part 1
+# Notebook 1
 
-Start Date: 02/28/2024
+## Background {#sec-intro}
 
-End Date: ----
+Theophylline is a medication used to treat asthma and chronic obstructive pulmonary disease as a second-line drug. It is a bronchodilator. This activity reviews the indications, action, and contraindications for theophylline as a potential agent in treating asthma and chronic obstructive pulmonary disease. This activity will highlight the mechanism of action, adverse event profile, pharmacokinetics, and drug interactions pertinent for members of the interprofessional team in the treatment of patients with asthma and chronic obstructive pulmonary disease ([Link](https://www.ncbi.nlm.nih.gov/books/NBK519024/)). The chemical structure of Theoph is show below @fig-struc.
 
-## Background {#sec-background style="color:green"}
+![Chemical Structure](images/theoph_structures.png){#fig-struc style="text-align: center"}
 
-## Methods
+## Methods {#sec-methods}
 
-As discussed in the @sec-background Theoph is an important medication.
+### Data
 
-## Data Viz
+```{r}
+#| code-fold: true
+#| code-summary: "Click here for full code"
+#install.packages("ggplot2")
+library(ggplot2)
+library(gt)
+library(tidyverse)
+library(dplyr)
+
+```
+
+```{r}
+#| label: fig-PK-profile 
+#| fig-cap: "Theoph PK Profiles"
+#| fig-subcap: 
+#| - "PK Profile colored by Subject ID"
+#| - "Individual PK profiles" 
+#| echo: fenced
+#| layout-ncol: 2
+
+dataset<-Theoph
+
+full<-ggplot(data=dataset, aes(x=Time, y=conc, group=Subject))+
+  geom_point(aes(color=as.factor(Subject)),size=2, alpha=0.6)+
+  geom_line(aes(color=as.factor(Subject)))+
+  theme_bw()+
+  guides(color="none")+
+  labs(x="Time (hrs)", y="Theoph Concentration (mg/mL)")
+  
+full
+
+
+idv<-ggplot(data=dataset, aes(x=Time, y=conc, group=Subject))+
+  geom_point(aes(color=as.factor(Subject)),size=2, alpha=0.6)+
+  geom_line(aes(color=as.factor(Subject)))+
+  theme_bw()+
+  guides(color="none")+
+  labs(x="Time (hrs)", y="Theoph Concentration (mg/mL)")+
+  facet_wrap(~Subject)
+  
+idv
+
+
+```
+
+@fig-PK-profile
+
+@fig-PK-profile-1 and @fig-PK-profile-2
+
+```{r}
+#| label: tbl-pk-sum
+#| tbl-cap: "Summary of Theoph Concentrations"
+#| tbl-colwidths: [10,10,40,40]
+
+
+dataset%>%
+  mutate(Time = round(Time, digits = 0))%>%
+  group_by(Time)%>%
+  summarise(N=n(),
+            Mean = mean(conc),
+            Median = median(conc))%>%
+  gt()
+
+
+```
+
+@tbl-pk-sum
+
+## Results
+
+As discussed in @sec-intro
