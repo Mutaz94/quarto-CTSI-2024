@@ -1,0 +1,237 @@
+---
+title: "Lab Notebook: Theophylline Data and Models"
+author: "CTSI Symposium"
+date: today
+format: html
+editor: visual
+table-of-contents: true
+number-sections: true
+lof: true
+lot: true
+code-link: true
+execute: 
+  warning: false
+  error: false
+---
+
+{{< pagebreak >}}
+
+::: callout-note
+To render a pdf or word document update your header text to:
+
+`format: pdf`
+
+`format: docx`
+
+In order to cross reference different sections in your Quarto document your header should include: `number-sections: true`
+:::
+
+::: {.callout-tip title="References for YAML Header"}
+General info on YAML:
+
+-   The YAML Header is marked by the three dashes "- - -"
+
+-   The general principle is to have: the name of a data item (a key), followed by a colon, a space, and then the data item's value. A key-value pair in the format [key: value]{style="color: blue;"}.
+
+-   Each line in YAML is a new item.
+
+-   Dashes (-) represent individual items in a list.
+
+-   Note that indentations matter in YAML!!
+
+-   YAML can be used to specify the global settings for your document (i.e. figure caption location, citation method, code folding, etc.).
+
+-   You can use the tab key to see what options are available
+
+Resources:
+List of Quarto output options: <https://r4ds.hadley.nz/quarto-formats>
+List of header options: <https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-fieldguide.html>
+:::
+
+# Notebook 1
+
+Start Date: February 28th 2024
+
+End Date: ...
+
+## Introduction
+
+Theophylline is a medication used to treat asthma and chronic obstructive pulmonary disease as a second-line drug. It is a bronchodilator. This activity reviews the indications, action, and contraindications for theophylline as a potential agent in treating asthma and chronic obstructive pulmonary disease. This activity will highlight the mechanism of action, adverse event profile, pharmacokinetics, and drug interactions pertinent for members of the interprofessional team in the treatment of patients with asthma and chronic obstructive pulmonary disease. (<https://www.ncbi.nlm.nih.gov/books/NBK519024/>). The chemical structure (@fig-strc) is shown below:
+
+![Chemical Structure](images/theoph_structures.png){#fig-strc fig-align="center"}
+
+## Goals
+
+Develop a PopPK model for theophylline.
+
+## Raw Data {#sec-EDA}
+
+::: callout-note
+When specifying setting for your code blocks quarto uses the `#|` (hash pipe). Also, now you use lowercase when for true and false options. EX: `#| echo: false`
+
+This is different from rmd where we use uppercase and list our options in the chunk delimiter EX: ```` ```{r, include = T, message=FALSE, warning = FALSE, results="hide"} ````
+:::
+
+```{r}
+#| echo: false
+library(ggplot2)
+library(gt)
+library(dplyr)
+library(tidyverse)
+```
+
+```{r}
+#| label: fig-PK-profile
+#| fig-cap: "PK Profile of Theoph in male subjects"
+#| fig-subcap:
+#| - "PK Profiles colored by Subject"
+#| - "Individual PK Profiles for each subject"
+#| layout-ncol: 2
+#| code-fold: true
+#| code-summary: Click here for full code
+#| fig-width: 7
+#| fig-height: 5
+
+
+dataset<-Theoph
+
+full<-ggplot(data=dataset, aes(x=Time, y=conc, group=Subject))+
+  geom_point(aes(color=as.factor(Subject)), size=3, alpha=0.6)+
+  geom_line(aes(color=as.factor(Subject)))+
+  theme_bw()+
+  guides(color="none")+
+  labs(x="Time (hrs)", y = "Theoph Concentration (mg/L)")
+full
+
+idv<-ggplot(data=dataset, aes(x=Time, y=conc, group=Subject))+
+  geom_point(aes(color=as.factor(Subject)), size=3, alpha=0.6)+
+  geom_line(aes(color=as.factor(Subject)))+
+  theme_bw()+
+  guides(color="none")+
+  labs(x="Time (hrs)", y = "Theoph Concentration (mg/L)")+
+  facet_wrap(~Subject)
+idv
+
+```
+
+
+As shown in @fig-PK-profile-1 and @fig-PK-profile-2 we have 12 IDs with PK data collected over 25 hours. The only other covariate we have is weight and that is plotted below in @fig-weight.
+
+![Histogram of Subject's Weight](images/weight_histogram.png){#fig-weight fig-align="center"}
+
+::: {.callout-tip title="References for Figures"}
+Inserting Figures: <https://quarto.org/docs/authoring/figures.html>
+
+To cross reference figures in your document remember to include:
+
+1.  A label beginning with `fig` in your code block
+
+`#| label: fig-PK-Profile`
+
+or if you have imported your figure include `{#fig-PK-Profile}` in the Source mode which is the ID in Visual mode.
+
+2.  To reference this figure in you text use `@fig-PK-Profile`
+:::
+
+The PK data are summarized below in @tbl-PK-sum.
+
+```{r}
+#| tbl-cap: "Summary Table of Theophylline Concentrations"
+#| label: tbl-PK-sum
+#| code-fold: true
+#| code-summary: click here for full code
+#| tbl-colwidths: [15,5,40,40]
+
+dataset2<-Theoph
+
+Table_sum<-dataset2%>%
+    mutate(Time = round(Time,digits = 0))%>%
+    group_by(Time)%>%
+    summarise(n=n(),
+              Mean = round(mean(conc), digits = 2),
+              Median= round(median(conc), digits = 2))%>%
+    select(Time, n, Mean, Median)
+
+  
+  PK_table <-gt(Table_sum) |>
+    tab_source_note(
+      source_note = "Source: Example Notebook"
+    ) |>
+    tab_options(table.font.size = 12,
+                table.width = 14,
+                table.align = "center",
+                heading.align = "center") |>
+    opt_align_table_header("center") |>
+    opt_row_striping()
+  
+  # Show the gt table
+  PK_table
+
+
+```
+
+::: {.callout-tip title="References for Tables"}
+Inserting Tables: <https://quarto.org/docs/authoring/tables.html>
+
+To cross reference tables in your document remember to include:
+
+1.  A label beginning with `tbl` in your code block
+
+`#| label: tbl-PK-sum`
+
+2.  To reference this table in you text use `@tbl-PK-sum`
+:::
+
+## Model Development {#sec-modeldev}
+
+Various Structural models were tested during model development as showed in @fig-model-1cmpt and @fig-model-2cmpt below.
+
+
+::: callout-note
+You can get fancy and try to make compartmental models with mermaid. 
+
+Reference: <https://mermaid.js.org/syntax/flowchart.html>
+:::
+
+
+
+```{mermaid}
+%%| label: fig-model-1cmpt
+%%| fig-cap: "Theophylline 1 Compartmental Model"
+%%| fig-width: 5
+  
+flowchart LR
+  
+A[Depot] == Ka ==> B[Vc]
+B == Ke ==>END:::hidden
+  
+classDef hidden display: none;
+```
+
+```{mermaid}
+%%| label: fig-model-2cmpt
+%%| fig-cap: "Theophylline 2 Compartmental Model"
+%%| fig-width: 5
+  
+flowchart LR
+  
+A[Depot] == Ka ==> B[Vc]
+B[Vc] <== Q ==> C[Vp]
+B == Ke ==>END:::hidden
+  
+classDef hidden display: none;
+  
+style A fill:#FDBCB4
+style B fill:#FDBCB4
+style C fill:#FDBCB4
+```
+
+## Results {#sec-results}
+
+As described in @sec-EDA there were a total of 12 participants in the current study. Initially a 1-compartment model was tested with scaling for weight. Below are the diagnostics plots (@fig-PRED, @fig-IPRED, @fig-NPDE).
+
+![DV vs. PRED for 1-compartment model](images/2-dv-pred.png){#fig-PRED}
+
+![DV vs. IPRED for 1-compartment model](images/2-dv-ipred-03.png){#fig-IPRED}
+
+![NPDEs for 1-compartment model](images/2-npde-pred-time-tad-hist.png){#fig-NPDE}

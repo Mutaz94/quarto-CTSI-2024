@@ -1,0 +1,24 @@
+---
+title: "Lab Notebook Theoph Model Development"
+author: |
+        "CTSI"
+        "IU"
+format: html
+editor: visual
+table-of-contents: true
+number-sections: true
+---
+
+docx \# Lab Notebook Part 1
+
+Start Date: 02/28/2024
+
+End Date: ----
+
+## Background {#sec-background style="color:green"}
+
+## Methods
+
+As discussed in the @sec-background Theoph is an important medication.
+
+## Data Viz
