@@ -1,31 +1,33 @@
 #' ---
-#' title: Palmer Penguins
+#' title: Theophylline PK
 #' author: First Last
 #' date: last-modified
-#' format: html
+#' format: 
+#'    pdf:
+#'      toc: true
 #' ---
 
-library(palmerpenguins)
+library(ggplot2)
 
 #' ## Exploring the data
-#' See @fig-bill-sizes for an exploration of bill sizes by species.
+#' See @fig-conc for concentration-time profiles
 
-#| label: fig-bill-sizes
-#| fig-cap: Bill Sizes by Species
+#| label: fig-conc
+#| fig-cap: Concentration-time profile
 #| warning: false
 
-library(ggplot2)
-ggplot(data = penguins,
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           group = species)) +
-  geom_point(aes(color = species,
-                 shape = species),
-             size = 3,
-             alpha = 0.8) +
-  labs(title = "Penguin bill dimensions",
-       subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo Penguins at Palmer Station LTER",
-       x = "Bill length (mm)",
-       y = "Bill depth (mm)",
-       color = "Penguin species",
-       shape = "Penguin species")
+ggplot(Theoph, aes(Time, conc, group=Subject)) + 
+  geom_line() + 
+  geom_point(color="peru") + 
+  theme_bw(base_size = 13) + 
+  labs(x = "Time (hr)", y = "Concentration (mg/L)")
+
+
+#' One can also create a nice table as @tbl-conc 
+
+#| label: tbl-conc 
+#| tbl-cap: First 5 rows in Theophylline dataset 
+
+Theoph |>
+  dplyr::slice(1:5) |>
+  knitr::kable()
