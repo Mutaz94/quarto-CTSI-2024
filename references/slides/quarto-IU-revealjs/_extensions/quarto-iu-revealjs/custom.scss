@@ -6,3 +6,10 @@
 /*-- scss:rules --*/
 
 /* TODO: Provide custom CSS rules */
+
+.reveal .slide-logo {
+  height: 100px !important;
+  width: 150px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}

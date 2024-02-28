@@ -5,6 +5,12 @@ quarto-required: ">=1.5.0"
 contributes:
   formats:
     revealjs:
-      theme: [dark, custom.scss]
-      logo: logo.svg
+      theme: [simple, custom.scss]
+      logo: ctsi.png
+      code-overflow: scroll
+      fontsize: 2em
+      code-line-numbers: true
+      code-fold: show
+      footer: "CTSI 2024" 
+      slide-level: 0
 
