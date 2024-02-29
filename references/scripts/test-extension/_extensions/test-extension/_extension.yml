@@ -1,0 +1,15 @@
+title: Test-extension
+author: First Last
+version: 1.0.0
+quarto-required: ">=1.5.0"
+contributes:
+  formats:
+    common:
+      toc: true
+      filters:
+        - test-extension.lua
+    pdf:
+      include-in-header: header.tex
+    html:
+      css: styles.css
+
